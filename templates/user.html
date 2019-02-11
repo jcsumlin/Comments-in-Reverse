@@ -1,0 +1,39 @@
+{% extends 'template.html' %}
+{% block content %}
+    <!-- Begin page content -->
+    <br>
+    <div class="container">
+        <div class="page-header">
+            <h1>Reddit comments in reverse</h1>
+        </div>
+        <form class="form-inline" action="/user" method="post">
+            <div class="form-group">
+                <label class="sr-only" for="username">Username:</label>
+                <input type="text" class="form-control" id="username" placeholder="Enter username" name="username">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </div>
+    <br>
+    <div class="container">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Comment Body</th>
+                    <th>Link To post</th>
+                    <th>Comment Score</th>
+                </tr>
+                </thead>
+                {% for comment in comments %}
+                    <td>{{ comment.body }}</td>
+                    <td><a href="http://reddit.com/{{ comment.permalink }}">Link</a></td>
+                    <td>{{ comment.score }}</td>
+                    <tr>
+                {% endfor %}
+            </table>
+        </div>
+
+    </div>
+
+{% endblock %}
